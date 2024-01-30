@@ -1,0 +1,48 @@
+version: '2'
+services:
+  db:
+    image: mysql:8.0-debian
+    container_name: crm-bdd
+    volumes:
+      - ./dolibarrbdd.sql:/docker-entrypoint-initdb.d/mon_fichier.sql
+      - db-volume:/var/lib/mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'dolibarrbase'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'admin'
+
+    ports:
+      - "3306:3306"
+    networks:
+      network:
+        ipv4_address: 172.16.0.3
+  php-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - php-apache-volume:/var/www/html
+
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      network:
+        ipv4_address: 172.16.0.2
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/16
+          gateway: 172.16.0.1
+
+volumes:
+  db-volume:
+  php-apache-volume:
+
+
