@@ -36,13 +36,13 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 
 # Copier le fichier zip de Dolibarr dans le conteneur
-COPY dolibarr-18.0.4.zip .
+COPY dolibarr-18.0.5.zip .
 
 # Décompresser le fichier zip
-RUN unzip dolibarr-18.0.4.zip \
-    && rm dolibarr-18.0.4.zip
+RUN unzip dolibarr-18.0.5.zip \
+    && rm dolibarr-18.0.5.zip
 
-RUN mv dolibarr-18.0.4 dolibarr
+RUN mv dolibarr-18.0.5 dolibarr
 # Donner les permissions nécessaires
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
