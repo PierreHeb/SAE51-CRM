@@ -8,3 +8,7 @@ Pour réaliser ce projet, nous avons réaliser un Dockerfile pour automatiser le
 # Comment run le projet
 
 Pour run le projet, il faut simplement lancer le script "install.sh" après avoir préalablement télécharger via le dépôt 
+
+
+#Accéder à dolibarr
+Enfin, veuillez accéder à la page web via : 172.16.0.2/dolibarr/htdocs
